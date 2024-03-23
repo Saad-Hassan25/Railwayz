@@ -13,9 +13,9 @@ With its user-friendly interface and comprehensive features, RailWayz ensures a 
 ## Abstract
 
 RailWayz streamlines the process of booking train tickets, offering users the flexibility to choose their preferred seats, class, journey date, and stations. 
-Integrated with a secure payment system, users can purchase tickets conveniently and download them in PDF format for easy access. 
+Integrated with a payment system, users can purchase tickets conveniently and download them in PDF format for easy access. 
 The system also facilitates ticket cancellation within a specified time frame before the journey. 
-Additionally, RailWayz features a Railway Time Tracking & Prediction System, enabling users to track train schedules and receive real-time updates on arrivals and departures.
+Additionally, RailWayz features a Railway Time Tracking System, enabling users to track train schedules and receive updates on arrivals and departures.
 
 ## Main Features
 
@@ -25,7 +25,7 @@ Additionally, RailWayz features a Railway Time Tracking & Prediction System, ena
 4. **Ticket Download:** Download tickets in PDF format for convenience.
 5. **Ticket Cancellation:** Cancel tickets within a stipulated time frame.
 6. **Seat Availability Checker:** Check seat availability in real-time.
-7. **Railway Time Tracking:** Track train schedules and receive updates.
+7. **Railway Time Tracking:** Track train schedules.
 8. **Prediction System:** Get predictions for train arrivals and departures.
 9. **User Account Management:** Manage user accounts and preferences.
 10. **Feedback System:** Provide feedback to improve the service.
