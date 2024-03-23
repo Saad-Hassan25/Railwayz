@@ -1,6 +1,7 @@
 # RailWayz
 
-RailWayz is an innovative project aimed at revolutionizing the railway ticket booking experience. This application provides users with a seamless platform to plan their train journeys efficiently. With its user-friendly interface and comprehensive features, RailWayz ensures a hassle-free booking process and enhances the overall travel experience.
+RailWayz is an innovative project aimed at revolutionizing the railway ticket booking experience. This application provides users with a seamless platform to plan their train journeys efficiently. 
+With its user-friendly interface and comprehensive features, RailWayz ensures a hassle-free booking process and enhances the overall travel experience.
 
 ## Contributors
 
@@ -11,7 +12,10 @@ RailWayz is an innovative project aimed at revolutionizing the railway ticket bo
 
 ## Abstract
 
-RailWayz streamlines the process of booking train tickets, offering users the flexibility to choose their preferred seats, class, journey date, and stations. Integrated with a secure payment system, users can purchase tickets conveniently and download them in PDF format for easy access. The system also facilitates ticket cancellation within a specified time frame before the journey. Additionally, RailWayz features a Railway Time Tracking & Prediction System, enabling users to track train schedules and receive real-time updates on arrivals and departures.
+RailWayz streamlines the process of booking train tickets, offering users the flexibility to choose their preferred seats, class, journey date, and stations. 
+Integrated with a secure payment system, users can purchase tickets conveniently and download them in PDF format for easy access. 
+The system also facilitates ticket cancellation within a specified time frame before the journey. 
+Additionally, RailWayz features a Railway Time Tracking & Prediction System, enabling users to track train schedules and receive real-time updates on arrivals and departures.
 
 ## Main Features
 
