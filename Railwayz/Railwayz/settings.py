@@ -42,8 +42,10 @@ INSTALLED_APPS = [
     'Feedback',
     'Payment',
     'TimeTrackingAndPrediction',
-    'UserManagement'
-    'Trains'
+    'UserManagement',
+    'Trains',
+    'Stations',
+    'Schedules',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +71,9 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'TimeTrackingAndPrediction', 'templates'),
             os.path.join(BASE_DIR, 'UserManagement', 'templates'),
             os.path.join(BASE_DIR, 'Trains', 'templates'),
+            os.path.join(BASE_DIR, 'Schedules', 'templates'),
+            os.path.join(BASE_DIR, 'Stations', 'templates'),
+            
             ],
         'APP_DIRS': True,
         'OPTIONS': {
