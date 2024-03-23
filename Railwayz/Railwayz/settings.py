@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'Feedback',
     'Payment',
     'TimeTrackingAndPrediction',
+    'UserManagement'
+    'Trains'
 ]
 
 MIDDLEWARE = [
@@ -65,6 +67,8 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'Feedback', 'templates'),
             os.path.join(BASE_DIR, 'Payment', 'templates'),
             os.path.join(BASE_DIR, 'TimeTrackingAndPrediction', 'templates'),
+            os.path.join(BASE_DIR, 'UserManagement', 'templates'),
+            os.path.join(BASE_DIR, 'Trains', 'templates'),
             ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -138,6 +142,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'Feedback', 'static'),
     os.path.join(BASE_DIR, 'Payment', 'static'),
     os.path.join(BASE_DIR, 'TimeTrackingAndPrediction', 'static'),
+    os.path.join(BASE_DIR, 'UserManagement', 'static'),
+    os.path.join(BASE_DIR, 'Trains', 'static'),
 
 ]
 
