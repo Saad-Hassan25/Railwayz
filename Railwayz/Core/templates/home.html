@@ -4,20 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-    <!-- Add any additional meta tags, CSS or JavaScript links here -->
 </head>
 <body>
-    <header>
-        <h1>Welcome to our Train Ticket Booking Platform</h1>
-        <!-- Add any navigation or header elements here -->
-    </header>
-    <main>
-        <p>This is the home page content. You can customize this section as per your requirements.</p>
-        <!-- Add any additional content or features here -->
-    </main>
-    <footer>
-        <p>&copy; 2024 Your Railway Ticket Booking Platform</p>
-        <!-- Add any footer content here -->
-    </footer>
+    <h1>Welcome to Ticket Booking</h1>
+    <a href="{% url 'UserManagement:register' %}"><button>Register</button></a>
+    <a href="{% url 'UserManagement:user_login' %}"><button>Login</button></a>
 </body>
 </html>

@@ -6,7 +6,7 @@ from django.conf import settings
 
 # Create your models here.
 class Ticket(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Passenger, on_delete=models.CASCADE)
     train = models.ForeignKey(Train, on_delete=models.CASCADE)
     sourceStation = models.ForeignKey(Station, related_name='source_tickets', on_delete=models.CASCADE, default = None)
     destinationStation = models.ForeignKey(Station, related_name='destination_tickets', on_delete=models.CASCADE, default= None)

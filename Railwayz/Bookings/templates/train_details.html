@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Details</title>
+    <!-- Add any CSS stylesheets or meta tags here -->
+</head>
+<body>
+    <h1>Train Details</h1>
+
+    <!-- Display available trains -->
+    <h2>Available Trains</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Train Name</th>
+                <th>Train Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for train in available_trains %}
+                <tr>
+                    <td>{{ train.name }}</td>
+                    <td>{{ train.number }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Display available stations -->
+    <h2>Available Stations</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Station Name</th>
+                <th>Station Code</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for station in available_stations %}
+                <tr>
+                    <td>{{ station.name }}</td>
+                    <td>{{ station.code }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Display train schedules -->
+    <h2>Train Schedules</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Train</th>
+                <th>Departure Station</th>
+                <th>Departure Time</th>
+                <th>Arrival Station</th>
+                <th>Arrival Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for schedule in train_schedules %}
+                <tr>
+                    <td>{{ schedule.train.name }}</td>
+                    <td>{{ schedule.DepartureStation.name }}</td>
+                    <td>{{ schedule.departure_time }}</td>
+                    <td>{{ schedule.ArrivalStation.name }}</td>
+                    <td>{{ schedule.arrival_time }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Display other relevant details -->
+    <!-- Add any other sections or details as needed -->
+
+</body>
+</html>

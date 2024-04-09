@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-class User(models.Model):
+
+class Passenger(models.Model):
     firstName = models.CharField(max_length=50)
     lastName = models.CharField(max_length=50)
     email = models.EmailField(max_length=254, unique=True)  
@@ -14,10 +15,4 @@ class User(models.Model):
         ('O', 'Other'),
     )
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-
-
-
-    
-    
-   
-   
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='passenger', null=True)
