@@ -4,34 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Page</title>
+    <style>
+        /* Basic reset styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f7f0;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header styles */
+        header {
+            background-color: #18b7be;
+            color: #fff;
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+        
+        /* Main content styles */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        h1, h2 {
+            margin-bottom: 1rem;
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        li {
+            background-color: #fff;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        strong {
+            font-weight: bold;
+        }
+        
+        button {
+            padding: 0.5rem 1rem;
+            background-color: #18b7be;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #178ca4;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Your User Page</h1>
-    <h2>Your Bookings:</h2>
-    <ul>
-        {% for booking in bookings %}
-            <li>
-                <strong>Booking ID:</strong> {{ booking.id }}<br>
-                <strong>Train:</strong> {{ booking.train.name }}<br>
-                <strong>Source Station:</strong> {{ booking.sourceStation.name }}<br>
-                <strong>Destination Station:</strong> {{ booking.destinationStation.name }}<br>
-                <strong>Class:</strong> {{ booking.classType }}<br>
-                <strong>Status:</strong> {{ booking.status }}<br>
+    <header>
+        <h1>Welcome to Your User Page</h1>
+        {% if user.is_authenticated %}
+        <p>Welcome, {{ user.passenger.firstName }}</p>
+        {% endif %}
 
-                <!-- Add more fields as per your Ticket model -->
-                {% if booking.status == 'booked' and booking.can_cancel %}
-                <form action="{% url 'Bookings:cancel_ticket' booking.id %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit">Cancel Ticket</button>
-                </form>
-                {% endif %}
-            </li>
-            <br>
-        {% endfor %}
-    </ul>
-
-    <a href="{% url 'Bookings:train_details' %}"><button>Book</button></a>
-    <a href="{% url 'UserManagement:user_logout' %}"><button>Logout</button></a>
-
+    </header>
+    <div class="container">
+        <h2>Your Bookings:</h2>
+        <ul>
+            {% for booking in bookings %}
+                <li>
+                    <strong>Booking ID:</strong> {{ booking.id }}<br>
+                    <strong>Train:</strong> {{ booking.train.name }}<br>
+                    <strong>Source Station:</strong> {{ booking.sourceStation.name }}<br>
+                    <strong>Destination Station:</strong> {{ booking.destinationStation.name }}<br>
+                    <strong>Class:</strong> {{ booking.classType }}<br>
+                    <strong>Status:</strong> {{ booking.status }}<br>
+        
+                    {% if booking.status == 'booked' and booking.canCancel %}
+                        <form action="{% url 'Bookings:CancelTicket' booking.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Cancel Ticket</button>
+                        </form>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    
+        <a href="{% url 'Bookings:TrainDetails' %}"><button>Book</button></a>
+        <a href="{% url 'UserManagement:UserLogout' %}"><button>Logout</button></a>
+    </div>
 </body>
 </html>

@@ -4,5 +4,5 @@ from Trains.models import *
 class TrainInfo(admin.ModelAdmin):
     list_display = ('name', 'capacity', 'economyClassPrice', 'businessClassPrice')
     
-    
+
 admin.site.register(Train, TrainInfo)

@@ -4,10 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+    <style>
+        /* Basic reset styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        /* Header styles */
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+        
+        /* Hero section styles */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+        
+        .hero .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .hero .btn:hover {
+            background-color: #0056b3;
+        }
+        
+        /* Responsive adjustments */
+        @media only screen and (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .hero .btn {
+                padding: 0.75rem 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Ticket Booking</h1>
-    <a href="{% url 'UserManagement:register' %}"><button>Register</button></a>
-    <a href="{% url 'UserManagement:user_login' %}"><button>Login</button></a>
+    <header>
+        <h1>Railwayz</h1>
+    </header>
+    <main>
+        <section class="hero">
+            <h1>Welcome to Your Ticket Booking Solution!</h1>
+            <p>Book tickets for your favorite events, all in one place.</p>
+            <a href="{% url 'UserManagement:Register' %}" class="btn">Register Now</a>
+            <a href="{% url 'UserManagement:UserLogin' %}" class="btn">Login</a>
+            <a href="{% url 'Bookings:TrainDetails' %}" class="btn">View Schedules</a>
+        </section>
+    </main>
 </body>
 </html>

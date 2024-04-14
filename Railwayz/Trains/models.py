@@ -10,7 +10,7 @@ class Train(models.Model):
     def __str__(self):
         return self.name
     
-    def get_base_price(self, class_type):
+    def getBasePrice(self, class_type):
         if class_type == 'Economy':
             return self.economyClassPrice
         elif class_type == 'Business':

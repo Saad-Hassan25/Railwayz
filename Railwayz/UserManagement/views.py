@@ -37,11 +37,11 @@ def register(request):
         user.save()
         passenger.save()
         
-        return redirect('home')  # Redirect to home page after successful registration
+        return redirect('home')
     else:
         return render(request, 'register.html')
 
-def user_login(request):
+def userLogin(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -51,7 +51,7 @@ def user_login(request):
                 passenger = Passenger.objects.get(user=user)
                 request.session['passenger_id'] = passenger.id
                 login(request, user)
-                return redirect('UserManagement:user_page')
+                return redirect('UserManagement:UserPage')
             except Passenger.DoesNotExist:
                 error_message = 'Passenger does not exist'
         else:
@@ -61,7 +61,7 @@ def user_login(request):
         return render(request, 'login.html')
 
 
-def user_page(request):
+def userPage(request):
     passenger_id = request.session.get('passenger_id')
     if passenger_id:
         try:
@@ -70,10 +70,10 @@ def user_page(request):
         except Ticket.DoesNotExist:
             return render(request, 'userPage.html', {'bookings': None})
     else:
-        return redirect('UserManagement:user_login')
+        return redirect('UserManagement:UserLogin')
 
 
 
-def user_logout(request):
+def userLogout(request):
     logout(request)
     return redirect('home')  

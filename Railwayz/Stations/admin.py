@@ -4,5 +4,5 @@ from Stations.models import *
 class StationInfo(admin.ModelAdmin):
     list_display = ('name', 'location')
     
-    
+
 admin.site.register(Station, StationInfo)

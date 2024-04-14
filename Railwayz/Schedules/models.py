@@ -3,8 +3,6 @@ from Trains.models import *
 from Stations.models import *
 from datetime import date
 
-
-
 # Create your models here.
 
 class TrainSchedule(models.Model):
@@ -14,7 +12,3 @@ class TrainSchedule(models.Model):
     arrival_time = models.DateTimeField()
     departure_time = models.DateTimeField()
     date = models.DateField(default=date.today)
-    
-   
-
-
