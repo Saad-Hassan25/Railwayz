@@ -3,52 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Train Details</title>
-    <!-- Add any CSS stylesheets or meta tags here -->
+    <title>Book Ticket</title>
 </head>
 <body>
-    <h1>Train Details</h1>
-
-    <!-- Display available trains -->
-    <h2>Available Trains</h2>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Train Name</th>
-                <th>Train Number</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for train in available_trains %}
-                <tr>
-                    <td>{{ train.name }}</td>
-                    <td>{{ train.number }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <!-- Display available stations -->
-    <h2>Available Stations</h2>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Station Name</th>
-                <th>Station Code</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for station in available_stations %}
-                <tr>
-                    <td>{{ station.name }}</td>
-                    <td>{{ station.code }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <!-- Display train schedules -->
     <h2>Train Schedules</h2>
+    <form method="GET" action="{% url 'Bookings:train_details' %}">
+        <label for="departure">Departure Station:</label>
+        <input type="text" name="departure" id="departure">
+
+        <label for="arrival">Arrival Station:</label>
+        <input type="text" name="arrival" id="arrival">
+
+        <button type="submit">Filter</button>
+    </form>
+
     <table border="1">
         <thead>
             <tr>
@@ -57,6 +25,7 @@
                 <th>Departure Time</th>
                 <th>Arrival Station</th>
                 <th>Arrival Time</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -67,13 +36,20 @@
                     <td>{{ schedule.departure_time }}</td>
                     <td>{{ schedule.ArrivalStation.name }}</td>
                     <td>{{ schedule.arrival_time }}</td>
+                    <td>
+                        <form method="post" action="{% url 'Bookings:book_ticket' schedule.id %}">
+                            {% csrf_token %}
+                            <label for="class_type">Class Type:</label>
+                            <select name="class_type" id="class_type">
+                                <option value="economy">Economy</option>
+                                <option value="business">Business</option>
+                            </select>
+                            <input type="submit" value="Book">
+                        </form>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-
-    <!-- Display other relevant details -->
-    <!-- Add any other sections or details as needed -->
-
 </body>
 </html>

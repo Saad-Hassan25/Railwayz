@@ -14,4 +14,7 @@ class TrainSchedule(models.Model):
     arrival_time = models.DateTimeField()
     departure_time = models.DateTimeField()
     date = models.DateField(default=date.today)
+    
+   
+
 

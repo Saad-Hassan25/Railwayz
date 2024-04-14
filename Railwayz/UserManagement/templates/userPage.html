@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+</head>
+<body>
+    <h1>Welcome to Your User Page</h1>
+    <h2>Your Bookings:</h2>
+    <ul>
+        {% for booking in bookings %}
+            <li>
+                <strong>Booking ID:</strong> {{ booking.id }}<br>
+                <strong>Train:</strong> {{ booking.train.name }}<br>
+                <strong>Source Station:</strong> {{ booking.sourceStation.name }}<br>
+                <strong>Destination Station:</strong> {{ booking.destinationStation.name }}<br>
+                <strong>Class:</strong> {{ booking.classType }}<br>
+                <strong>Status:</strong> {{ booking.status }}<br>
+
+                <!-- Add more fields as per your Ticket model -->
+                {% if booking.status == 'booked' and booking.can_cancel %}
+                <form action="{% url 'Bookings:cancel_ticket' booking.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Cancel Ticket</button>
+                </form>
+                {% endif %}
+            </li>
+            <br>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'Bookings:train_details' %}"><button>Book</button></a>
+    <a href="{% url 'UserManagement:user_logout' %}"><button>Logout</button></a>
+
+</body>
+</html>

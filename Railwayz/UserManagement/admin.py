@@ -6,3 +6,5 @@ class PassengerInfo(admin.ModelAdmin):
     list_display = ('firstName', 'lastName', 'cnic', 'address', 'phoneNumber', 'gender')
 
 admin.site.register(Passenger, PassengerInfo)
+
+

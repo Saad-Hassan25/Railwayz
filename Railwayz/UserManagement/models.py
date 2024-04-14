@@ -16,3 +16,7 @@ class Passenger(models.Model):
     )
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='passenger', null=True)
+    
+    def __str__(self):
+        return self.firstName
+
