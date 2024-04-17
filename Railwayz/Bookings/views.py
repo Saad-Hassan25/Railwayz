@@ -8,7 +8,7 @@ from UserManagement.models import*
 from django.contrib import messages
 from Bookings.models import *
 from datetime import datetime
-
+from django.db.models import F, ExpressionWrapper, IntegerField
 
 # Create your views here.
 
@@ -19,19 +19,19 @@ def trainDetails(request):
 
     departure_station = request.GET.get('departure')
     arrival_station = request.GET.get('arrival')
-    date = request.GET.get('date')  # New parameter for date filtering
-
 
     if departure_station and arrival_station:
         train_schedules = train_schedules.filter(
             DepartureStation__name__icontains=departure_station,
             ArrivalStation__name__icontains=arrival_station
         )
-            
+        
+    for schedule in train_schedules:
+        schedule.economy_price = schedule.calculate_price("economy")
+        schedule.business_price = schedule.calculate_price("business")
+
     return render(request, 'TrainDetails.html', 
     {
-        'available_trains': available_trains,
-        'available_stations': available_stations,
         'train_schedules': train_schedules,
     })
 
@@ -43,6 +43,18 @@ def bookTicket(request, schedule_id):
         passenger = Passenger.objects.get(pk=passenger_id)
         class_type = request.POST.get('class_type')  # Get the selected class type from the form
         
+        # Check if seats are available
+        if class_type == "economy":
+            available_seats = schedule.available_economy_seats
+        elif class_type == "business":
+            available_seats = schedule.available_business_seats
+        else:
+            return HttpResponse("Invalid class type")
+
+        if available_seats <= 0:
+            return HttpResponse("No seats available for booking")
+
+        # Check for price
         if class_type == "economy":
             price = schedule.train.economyClassPrice
         elif class_type == "business":
@@ -60,6 +72,7 @@ def bookTicket(request, schedule_id):
             price=price,
         )
         ticket.save()
+        schedule.decrement_available_seats(class_type)
         return redirect('UserManagement:UserPage')
     else:
         return redirect('UserManagement:UserLogin')
@@ -70,6 +83,9 @@ def cancelTicket(request, booking_id):
     if booking.canCancel():
         booking.status = 'canceled'
         booking.save()
+        schedule = TrainSchedule.objects.get(train=booking.train, DepartureStation=booking.sourceStation, ArrivalStation=booking.destinationStation)
+        schedule.increment_available_seats(booking.classType)
+
         messages.success(request, 'Ticket canceled successfully.')
     else:
         messages.error(request, 'Ticket cannot be canceled after 2 hours of booking.')

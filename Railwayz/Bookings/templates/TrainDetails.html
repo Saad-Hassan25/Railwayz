@@ -117,6 +117,10 @@
                     <th>Departure Date/Time</th>
                     <th>Arrival Station</th>
                     <th>Arrival Date/Time</th>
+                    <th>Economy Class Seats Remaining</th>
+                    <th>Buisness Class Seats Remaining</th>
+                    <th>Economhy price</th>
+                    <th>Buisness price</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -128,6 +132,12 @@
                         <td>{{ schedule.departure_time }}</td>
                         <td>{{ schedule.ArrivalStation.name }}</td>
                         <td>{{ schedule.arrival_time }}</td>
+                        <td>{{ schedule.available_economy_seats }}</td>
+                        <td>{{ schedule.available_business_seats }}</td>
+                        <td>{{ schedule.economy_price }}</td>
+                        <td>{{ schedule.business_price }}</td>
+    
+    
                         <td class="action">
                             <form method="post" action="{% url 'Bookings:BookTicket' schedule.id %}">
                                 {% csrf_token %}
@@ -141,6 +151,7 @@
                         </td>
                     </tr>
                 {% endfor %}
+
             </tbody>
         </table>
     </main>
