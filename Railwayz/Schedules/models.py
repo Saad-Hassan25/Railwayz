@@ -7,13 +7,24 @@ from Bookings.models import *
 # Create your models here.
 
 
+
 class TrainSchedule(models.Model):
+    
+    DEPARTURE_STATUS_CHOICES = (
+        ('No', 'NotDeparted'),
+        ('Yes', 'Departed'),
+        ('Cancelled', 'Cancelled'),
+        ('Delayed', 'Delayed'),
+    )
+
     train = models.ForeignKey(Train, on_delete=models.CASCADE)
     DepartureStation = models.ForeignKey(Station, related_name='departure_schedules', on_delete=models.CASCADE, default=None)
     ArrivalStation = models.ForeignKey(Station, related_name='arrival_schedule', on_delete=models.CASCADE, default=None)
-    arrival_time = models.DateTimeField()
     departure_time = models.DateTimeField()
+    arrival_time = models.DateTimeField()
+    departure_status = models.CharField(max_length=10, choices=DEPARTURE_STATUS_CHOICES, default='No')
     date = models.DateField(default=date.today)
+    
     
     @property
     def available_economy_seats(self):
@@ -47,7 +58,6 @@ class TrainSchedule(models.Model):
         else:
             raise ValueError("Invalid class type")
 
-        
         return base_price
 
 

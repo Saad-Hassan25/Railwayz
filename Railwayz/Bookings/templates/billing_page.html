@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Billing Details</title>
+</head>
+<body>
+    <h1>Billing Details</h1>
+    <p>Total Amount: ${{ total_amount }}</p>
+
+    <form method="post"><form method="post" action="{% url 'Payment:billing_page' schedule_id=schedule.id %}">
+        {% csrf_token %}
+        <!-- Add payment processing fields and options here -->
+        <input type="submit" value="Pay Now">
+    </form>
+</body>
+</html>
