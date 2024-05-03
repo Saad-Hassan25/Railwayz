@@ -77,3 +77,19 @@ def userPage(request):
 def userLogout(request):
     logout(request)
     return redirect('home')  
+
+
+def services(request):
+    return render(request,"Others/services.html")
+
+def userHelp(request):
+    return render(request,"Others/help.html")
+
+def userContact(request):
+    return render(request,"Others/contact.html")
+
+def userComplaint(request):
+    return render(request,"Others/complaint.html")
+
+def team(request):
+    return render(request,"Others/team.html")

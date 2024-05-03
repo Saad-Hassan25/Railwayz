@@ -1,84 +1,92 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-    <style>
-        /* Basic reset styles */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-        }
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" 
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" 
+      referrerpolicy="no-referrer" />
+       <link rel="stylesheet" href="{% static 'home.css' %}">
+       <title>RailWayz</title>
+    </head>
+    <body>
+        <header>
+            <div class="navbar">
+               <div class="logo"> <img src="{% static 'img3.png' %}" alt="Pulmo Logo"><a href="#">RailWayz</a></div>
+               <ul class="links">
+                  <li><a href="{% url 'home' %}">HOME </a></li>
+                  <li><a href="{% url 'UserManagement:team' %}">TEAM </a></li>
+                  <li><a href="{% url 'UserManagement:services' %}">SERVICES </a></li>
+                  <li><a href="{% url 'UserManagement:help' %}">HELP</a></li>
+                  <li><a href="{% url 'UserManagement:contact' %}">CONTACT</a></li>
+                </ul>
+                <a href="{% url 'UserManagement:UserLogin' %}" class="action_btn">LOGIN</a>
+                <div class="toggle_btn">
+                 <i class="fa-solid fa-bars"></i>
+                </div>            
+            </div>
+
+            <div class="dropdown_menu">
+                <li><a href="{% url 'home' %}">HOME </a></li>
+                <li><a href="{% url 'UserManagement:team' %}">TEAM </a></li>
+                <li><a href="{% url 'UserManagement:services' %}">SERVICES </a></li>
+                <li><a href="{% url 'UserManagement:help' %}">HELP </a></li>
+                <li><a href="{% url 'UserManagement:contact' %}">CONTACT</a></li>
+                <li><a href="{% url 'UserManagement:UserLogin' %}">LOGIN</a></li>
+                <li><a href="{% url 'UserManagement:Register' %}" >REGISTER</a></li>
+            </div>
+        </header>
         
-        /* Header styles */
-        header {
-            background-color: #007bff;
-            color: #fff;
-            padding: 1rem 2rem;
-            text-align: center;
-        }
-        
-        /* Hero section styles */
-        .hero {
-            text-align: center;
-            padding: 4rem 2rem;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            color: #555;
-        }
-        
-        .hero .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-        
-        .hero .btn:hover {
-            background-color: #0056b3;
-        }
-        
-        /* Responsive adjustments */
-        @media only screen and (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .hero p {
-                font-size: 1rem;
-            }
-            .hero .btn {
-                padding: 0.75rem 1.5rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Railwayz</h1>
-    </header>
-    <main>
-        <section class="hero">
-            <h1>Welcome to Your Ticket Booking Solution!</h1>
-            <p>Book tickets for your favorite events, all in one place.</p>
-            <a href="{% url 'UserManagement:Register' %}" class="btn">Register Now</a>
-            <a href="{% url 'UserManagement:UserLogin' %}" class="btn">Login</a>
-            <a href="{% url 'Schedules:TrainDetails' %}" class="btn">View Schedules</a>
-        </section>
-    </main>
-</body>
+        <main>
+            
+            <section id="hero">
+                
+                <p>
+                   Book tickets for your favorite events, all in one place. </p>
+                <a href="{% url 'UserManagement:Register' %}" class="action_btn">Register Now</a>
+                <br>
+                
+                <br>
+                <!--<a href="{% url 'UserManagement:UserLogin' %}" class="action_btn">Login</a>-->
+                <a href="{% url 'Schedules:TrainDetails' %}" class="action_btn">View Schedules</a>
+            </section>
+        </main>
+        <script>
+            const toggleBtn = document.querySelector('.toggle_btn');
+            const toggleBtnIcon = document.querySelector('.toggle_btn i');
+            const dropDownMenu = document.querySelector('.dropdown_menu');
+
+            toggleBtn.onclick = function() {
+            dropDownMenu.classList.toggle('open');
+            const isOpen = dropDownMenu.classList.contains('open');
+
+            toggleBtnIcon.classList = isOpen
+            ? 'fa-solid fa-xmark'
+            : 'fa-solid fa-bars'
+            };
+        </script>
+        <footer>
+            <div class="footer-container">
+                <div class="copyright">
+                    <p>© 2024 RailWayz. All rights reserved.</p>
+                </div>
+                <nav class="footer-nav">
+                    <ul>
+                        <li><a href="#privacy">Privacy</a></li>
+                        <li><a href="#terms">Terms</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </footer>
+    
+    
+    </body>
 </html>
+
+
+
+
+
