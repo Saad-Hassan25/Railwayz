@@ -1,0 +1,99 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RailWayz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="{% static 'help.css' %}">
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">
+        <img src="{% static 'img3.png' %}" alt="Pulmo Logo">
+        <span>RailWayz</span>
+    </div>
+    <nav>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href=>About</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="accordion">
+      <div class="accordion-item">
+        <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title">How do I book a train seat online?</span><span class="icon" aria-hidden="true"></span></button>
+        <div class="accordion-content">
+          <p>To book a train seat online, simply visit our website and enter your departure and arrival stations, select your travel date, choose the train and seat, then proceed to payment.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button id="accordion-button-2" aria-expanded="false"><span class="accordion-title">Can I choose my preferred seat on the train?</span><span class="icon" aria-hidden="true"></span></button>
+        <div class="accordion-content">
+          <p>Seat selection options vary depending on the train options and availability. During the booking process, you may have the option to select your preferred seat if it's available.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button id="accordion-button-3" aria-expanded="false"><span class="accordion-title">How far in advance can I book a train seat?</span><span class="icon" aria-hidden="true"></span></button>
+        <div class="accordion-content">
+          <p>The booking window for train seats varies depending on the train operator and the route. Generally, you can book train seats anywhere from a few months to a few hours in advance.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button id="accordion-button-4" aria-expanded="false"><span class="accordion-title">Can I make a reservation for an infant or young child?</span><span class="icon" aria-hidden="true"></span></button>
+        <div class="accordion-content">
+          <p>Yes, you can make a reservation for an infant or young child, but policies regarding child fares and seat reservations vary by train operator.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button id="accordion-button-5" aria-expanded="false"><span class="accordion-title">What should I do if I encounter any issues during the booking process?</span><span class="icon" aria-hidden="true"></span></button>
+        <div class="accordion-content">
+          <p>If you encounter any issues during the booking process, please contact our customer support team for assistance. We're here to help you with any questions or concerns you may have.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+<footer>
+    <div class="footer-container">
+        <div class="copyright">
+            <p>© 2024 RailWayz. All rights reserved.</p>
+        </div>
+        <nav class="footer-nav">
+            <ul>
+              <li><a href=>Privacy</a></li>
+              <li><a href=>Terms</a></li>
+              <li><a href=>Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+<script>
+    const items = document.querySelectorAll(".accordion button");
+
+function toggleAccordion() {
+  const itemToggle = this.getAttribute('aria-expanded');
+  
+  for (i = 0; i < items.length; i++) {
+    items[i].setAttribute('aria-expanded', 'false');
+  }
+  
+  if (itemToggle == 'false') {
+    this.setAttribute('aria-expanded', 'true');
+  }
+}
+
+items.forEach(item => item.addEventListener('click', toggleAccordion));
+</script>
+
+</body>
+</html>

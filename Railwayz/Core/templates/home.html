@@ -5,7 +5,7 @@
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" 
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
       integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" 
       referrerpolicy="no-referrer" />
        <link rel="stylesheet" href="{% static 'home.css' %}">
@@ -14,7 +14,7 @@
     <body>
         <header>
             <div class="navbar">
-               <div class="logo"> <img src="{% static 'img3.png' %}" alt="Pulmo Logo"><a href="#">RailWayz</a></div>
+               <div class="logo"> <img src="{% static 'img3.png' %}" alt="RailWayz logo"><a href="#">RailWayz</a></div>
                <ul class="links">
                   <li><a href="{% url 'home' %}">HOME </a></li>
                   <li><a href="{% url 'UserManagement:team' %}">TEAM </a></li>
@@ -74,9 +74,9 @@
                 </div>
                 <nav class="footer-nav">
                     <ul>
-                        <li><a href="#privacy">Privacy</a></li>
-                        <li><a href="#terms">Terms</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="{% url 'UserManagement:privacy' %}">Privacy</a></li>
+                        <li><a href="{% url 'UserManagement:terms' %}">Terms</a></li>
+                        <li><a href="{% url 'UserManagement:contact' %}">Contact</a></li>
                     </ul>
                 </nav>
             </div>

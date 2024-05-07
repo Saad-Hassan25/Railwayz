@@ -2,12 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'verdana';
   }
   
   body {
     height: 100vh;
-    background-image: url('img2.jpg');
+    background-image: url('img5.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
     
@@ -19,8 +19,10 @@
   
     a{
       text-decoration: none;
-      color: #fff;
+      color: black;
       font-size: 1rem;
+      
+      
     }
     a:hover {
       color: #3498db;
@@ -32,18 +34,19 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #08107a; /* adjust the background color */
+    background-color: #f0f0f0; /* adjust the background color */
     padding: 0 2rem;
+
 }
     .navbar {
       width: 100%;
-      height: 55px;
+      height: 53px;
       max-width: 1200px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      color:#3498db
+      color:black;
     }
     .navbar .logo a{
       font-size: 2rem;
@@ -52,7 +55,7 @@
   
     .navbar .links{
       display: flex;
-      gap: 3rem;
+      gap: 5rem;
     }
     .navbar .toggle_btn {
       color: blue;
@@ -62,8 +65,8 @@
   }
   
   .action_btn {
-      background-color: blueviolet ; 
-      color: #fff;
+      background-color: lightblue ; 
+      color: black;
       padding: 0.5rem 1rem;
       border: none;
       outline: none;
@@ -78,7 +81,7 @@
   
   .action_btn:hover {
       transform: scale(1.05);
-      color: #fff;
+      color: black;
   }
   
   .action_btn:active {
@@ -91,7 +94,7 @@
     .dropdown_menu {
       display: flex;
       position: absolute;
-      right: 2rem;
+      right: 4rem;
       top: 60px;
       height: 0;
       width: 300px;
@@ -120,22 +123,22 @@
     }
   
     .logo 
-{
-    display: flex;
-    align-items: center;
-}
-
-.logo img 
-{
-    width: 70px; /* adjust the width of the logo image */
-    height: auto;
-    margin-right: 10px; /*  space between the logo image and the text */
-}
-
-.logo span 
-{
-    font-size: 24px; /*  font size of the text */
-}
+    {
+        display: flex;
+        align-items: center;
+    }
+    
+    .logo img 
+    {
+        width: 50px; /* adjust the width of the logo image */
+        height: auto;
+        margin-right: 10px; /*  space between the logo image and the text */
+    }
+    
+    .logo span 
+    {
+        font-size: 24px; /*  font size of the text */
+    }
     /*HERO*/
     section#hero {
       height: calc(100vh - 60px);
@@ -183,12 +186,12 @@
 
   footer 
 {
-    background-color:  #08107a;
+    background-color:  #f0f0f0;
     padding: 10px 0;
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 35px;
+    height: 40px;
 }
 
 .footer-container 
@@ -196,11 +199,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1450px;
     margin: 0 auto;
     padding: 0 20px;
     max-height: fit-content;
-    color:white
+    color:black;
+    height: 20px;
 }
 
 
@@ -210,12 +214,12 @@
     padding: 0;
     margin: 0;
     display: flex;
-    color: white;
+    color: black;
 }
 
 .footer-nav ul li 
 {
-    margin: 0 10px;
+    margin: 0 15px;
     color: white;
 }
 
@@ -223,10 +227,10 @@
 {
     text-decoration: none;
     transition: color 0.3s;
-    color: white; /* Adjust the color of the links */
+    color: #333; /* Adjust the color of the links */
 }
 
 .footer-nav ul li a:hover 
 {
-    color: blueviolet; /* Change the color on hover as per your design */
+    color: lightblue; /* Change the color on hover as per your design */
 }

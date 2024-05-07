@@ -1,0 +1,61 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+   
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RailWayz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="{% static 'terms.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="{% static 'img3.png' %}" alt="RailWayz Logo">
+            <span>RailWayz</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href=>About</a></li>
+                <li><a href="{% url 'UserManagement:help' %}">Help</a></li>
+            </ul>
+        </nav>
+    </header>
+ <!-- Terms and Conditions Section -->
+ <section class="terms-container">
+    <h2>Terms and Conditions</h2>
+    <p>Please read these terms and conditions carefully before using our services.</p>
+    <ol>
+        <li><strong>Booking:</strong> By booking a train ticket through RailWayz, you agree to abide by the terms and conditions outlined herein.</li>
+        <li><strong>Payment:</strong> Payment for train tickets must be made at the time of booking.</li>
+        <li><strong>Cancellations and Refunds:</strong> Cancellation and refund policies vary depending on the fare type and the policies of the train operator.</li>
+        <li><strong>Travel Documents:</strong> It is your responsibility to ensure that you possess all necessary travel documents, including a valid ticket and any required identification, before boarding the train.</li>
+        <li><strong>Liability:</strong> RailWayz is not liable for any loss, damage, or injury sustained during the course of your journey. Passengers travel at their own risk.</li>
+        <li><strong>Seat Assignments:</strong> While we endeavor to accommodate seat preferences, actual seat assignments are subject to availability and may be reassigned at the discretion of the train operator.</li>
+        <li><strong>Conduct:</strong> Passengers are expected to conduct themselves in a respectful manner while onboard the train. Any disruptive behavior may result in removal from the train and potential legal action.</li>
+        <li><strong>Baggage:</strong> Passengers are responsible for their own baggage. Please adhere to luggage size and weight restrictions, as specified by the train operator, to ensure a smooth journey.</li>
+        <li><strong>Changes to Itinerary:</strong> Changes to your travel itinerary, including modifications to travel dates or routes, may be subject to fees and availability. Please contact our customer support team for assistance.</li>
+        <li><strong>Force Majeure:</strong> RailWayz shall not be liable for any failure or delay in performing its obligations due to circumstances beyond its reasonable control, including but not limited to acts of God, natural disasters, and government actions.</li>
+    </ol>
+    <p>By using our services, you acknowledge that you have read, understood, and agreed to these terms and conditions.</p>
+</section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="copyright">
+                <p>© 2024 RailWayz. All rights reserved.</p>
+            </div>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href=>Privacy</a></li>
+                    <li><a href=>Terms</a></li>
+                    <li><a href=>Contact</a></li>
+                </ul>
+        </div>
+    </footer>
+    

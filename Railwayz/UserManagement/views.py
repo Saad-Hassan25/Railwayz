@@ -9,6 +9,8 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.contrib.auth import logout
 from Bookings.models import *
+from django.http import JsonResponse
+from django.core.mail import send_mail
 
 def register(request):
     if request.method == 'POST':
@@ -80,16 +82,41 @@ def userLogout(request):
 
 
 def services(request):
-    return render(request,"Others/services.html")
+    return render(request,"services.html")
 
 def userHelp(request):
-    return render(request,"Others/help.html")
+    return render(request,"help.html")
 
-def userContact(request):
-    return render(request,"Others/contact.html")
+def contact(request):
+    return render(request,"contact.html")
 
 def userComplaint(request):
     return render(request,"Others/complaint.html")
 
 def team(request):
     return render(request,"Others/team.html")
+
+def terms(request):
+    return render(request, 'terms.html')
+
+def privacy(request):
+    return render(request, 'privacy.html')
+
+def contact_submit(request):
+    if request.method == 'POST':
+        name = request.POST.get('name', '')
+        email = request.POST.get('email', '')
+        message = request.POST.get('message', '')
+
+        # Send email
+        send_mail(
+            'Contact Form Submission',
+            f'Name: {name}\nEmail: {email}\nMessage: {message}',
+            email,  # Replace with your email address
+            ['l215252@lhr.nu.edu.pk'],  # Replace with recipient email address
+            fail_silently=False,
+        )
+
+        return JsonResponse({'success': True})
+    else:
+        return JsonResponse({'success': False})
