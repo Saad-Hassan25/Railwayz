@@ -51,7 +51,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #007bff; /* Change the color on hover as per your design */
+    color: lightblue; /* Change the color on hover as per your design */
 }
 
 footer {
@@ -89,7 +89,7 @@ footer {
 }
 
 .footer-nav ul li a:hover {
-    color: #007bff; /* Change the color on hover as per your design */
+    color: lightblue; /* Change the color on hover as per your design */
 }
 
 .contact-container {
