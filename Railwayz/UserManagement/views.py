@@ -94,7 +94,7 @@ def userComplaint(request):
     return render(request,"Others/complaint.html")
 
 def team(request):
-    return render(request,"Others/team.html")
+    return render(request,"team.html")
 
 def terms(request):
     return render(request, 'terms.html')

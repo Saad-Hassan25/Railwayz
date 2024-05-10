@@ -12,8 +12,8 @@
   <div class="navbar">
     <div class="right-text">
       <a href="{% url 'home' %}">HOME </a>
-      <a href=>HELP</a>
-      <a href=>CONTACT</a>
+      <a href="{% url 'UserManagement:help' %}">HELP</a>
+      <a href="{% url 'UserManagement:contact' %}">CONTACT</a>
     </div>
     <div class="logo">
         <img src="{% static 'img3.png' %}" alt="RailWayz Logo">

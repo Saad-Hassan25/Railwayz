@@ -21,7 +21,7 @@
         <nav>
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href=>About</a></li>
+                <li><a href="{% url 'UserManagement:services' %}">Services</a></li>
                 <li><a href="{% url 'UserManagement:help' %}">Help</a></li>
             </ul>
         </nav>
@@ -52,9 +52,8 @@
             </div>
             <nav class="footer-nav">
                 <ul>
-                    <li><a href=>Privacy</a></li>
-                    <li><a href=>Terms</a></li>
-                    <li><a href=>Contact</a></li>
+                    <li><a href="{% url 'UserManagement:privacy' %}">Privacy</a></li>
+                    <li><a href="{% url 'UserManagement:contact' %}">Contact</a></li>
                 </ul>
         </div>
     </footer>

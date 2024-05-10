@@ -32,6 +32,7 @@ header {
 
 .logo span {
     font-size: 24px; /*  font size of the text */
+    
 }
 
 nav ul {
@@ -127,7 +128,7 @@ h1, label, button, .description {
 }
 
 h1 {
-    color: #3F444C;
+    color: black;
     text-transform: uppercase;
     font-size: 2.5rem;
     letter-spacing: 0.5rem;
@@ -135,7 +136,7 @@ h1 {
 }
 
 p {
-    color: #818386;
+    color: black;
     font-size: 0.9rem;
     letter-spacing: 0.01rem;
     width: 40vw;
@@ -143,7 +144,7 @@ p {
 }
 
 label, .description {
-    color: #818386;
+    color: black;
     text-transform: uppercase;
     font-size: 0.625rem;
 }
