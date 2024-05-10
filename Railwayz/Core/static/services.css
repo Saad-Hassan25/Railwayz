@@ -14,7 +14,7 @@ body{
   
   background-image: url('img5.jpg');
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: cover;
 }
 
 .navbar {
@@ -99,17 +99,17 @@ body{
 }
 .service-box {
  
-  border-radius: 15px;
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 10px;
+  padding: 8px;
   margin-bottom: 20px;
   box-sizing: border-box;
   color: #fff;
   height: 175px;
-  border: 3px solid #fff; /* Increase the border width and adjust color if needed */
+  border: 3px solid lightcyan; /* Increase the border width and adjust color if needed */
   backdrop-filter: blur(30px);
-
-  
+  background-color: rgb(197, 219, 233); /* Light grey color */
+  margin: 5px;
 }
 
 /* Styles for service headings and details */
