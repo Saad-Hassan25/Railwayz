@@ -22,7 +22,6 @@
         <ul>
           <li><a href="{% url 'Core:home' %}">Home</a></li>
           <li><a href="{% url 'Core:services' %}">Services</a></li>
-          <li><a href="/user/register">Register</a></li>
         </ul>
     </nav>
 </header>
@@ -41,6 +40,10 @@
             <input type="password" id="password" name="password" required>
             <button type="submit">Login</button>
         </form>
+        <div class="useful">
+            <a class="forget" href="{% url 'UserManagement:password_reset' %}">Forgot Password?</a>
+            <span>New? <a class="signup" href="{% url 'UserManagement:Register' %}">Signup</a></span>
+        </div>
 </div>
 <footer>
     <div class="footer-container">

@@ -147,3 +147,5 @@ def incorrectDetails(request):
 def forgetPassword(request):
     return render(request,"passwordReset.html")
 
+def password_reset_done(request):
+    return render(request,"password_reset_done.html")

@@ -164,3 +164,25 @@ footer {
 .footer-nav ul li a:hover {
     color: lightblue;
 }
+
+.forget {
+    color: #13477f;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.signup {
+    color: #13477f;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.useful {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+span {
+    color:#000000;
+}
