@@ -23,8 +23,7 @@ def billing_page(request, schedule_id, passenger_id, class_type, num_tickets, to
 
     except Ticket.DoesNotExist:
         return HttpResponse("Booking does not exist!")
-    except Exception as e:
-        return HttpResponse(f"Error: {e}")
+    
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY

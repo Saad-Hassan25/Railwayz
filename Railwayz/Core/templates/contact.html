@@ -20,9 +20,9 @@
     </div>
     <nav>
         <ul>
-          <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'UserManagement:services' %}">Services</a></li>
-          <li><a href="{% url 'UserManagement:help' %}">Help</a></li>
+          <li><a href="{% url 'Core:home' %}">Home</a></li>
+          <li><a href="{% url 'Core:services' %}">Services</a></li>
+          <li><a href="{% url 'Core:help' %}">Help</a></li>
         </ul>
     </nav>
 </header>
@@ -38,7 +38,7 @@
       <h1>Contact us</h1>
       <p>Have any questions or need assistance? Reach out to us now.</p>
       
-      <form id="contact-form" method="post" action="{% url 'UserManagement:contact_submit' %}">
+      <form id="contact-form" method="post" action="{% url 'Core:contact' %}">
         {% csrf_token %}
         <label for="name">Full name</label>
     <input type="text" id="name" name="name" placeholder="Your Full Name" required>
@@ -64,9 +64,9 @@
         </div>
         <nav class="footer-nav">
             <ul>
-              <li><a href="{% url 'UserManagement:privacy' %}">Privacy</a></li>
-              <li><a href="{% url 'UserManagement:terms' %}">Terms</a></li>
-              <li><a href="{% url 'UserManagement:contact' %}">Contact</a></li>
+              <li><a href="{% url 'Core:privacy' %}">Privacy</a></li>
+              <li><a href="{% url 'Core:terms' %}">Terms</a></li>
+              <li><a href="{% url 'Core:contact' %}">Contact</a></li>
             </ul>
         </nav>
     </div>

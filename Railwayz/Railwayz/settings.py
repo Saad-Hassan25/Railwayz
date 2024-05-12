@@ -74,8 +74,7 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'UserManagement', 'templates'),
             os.path.join(BASE_DIR, 'Trains', 'templates'),
             os.path.join(BASE_DIR, 'Schedules', 'templates'),
-            os.path.join(BASE_DIR, 'Stations', 'templates'),
-            
+            os.path.join(BASE_DIR, 'Stations', 'templates'),            
             ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -162,3 +161,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51OLi3ALYWee0pOU1kWHMuhXAoNhW5gAARHBgBVO6x9H5aYWwPC7WFQrlF3pC61SPYVL1AYVQyI1Kq0K01a7blhT200sL6U4pXX'
 STRIPE_SECRET_KEY = 'sk_test_51OLi3ALYWee0pOU1I27z39rheeMmzKMzIxcBrvJydYY6NBU32OCE6x7EvuwKJMhYeBkidCWUSNqiMPSWn0Kp8njP00AWn3np7h'
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'l215252@lhr.nu.edu.pk'  # Your Gmail email address
+EMAIL_HOST_PASSWORD = 'Saad2592003'  # Your Gmail password or app-specific password
+DEFAULT_FROM_EMAIL = 'l215252@lhr.nu.edu.pk'  # Same as EMAIL_HOST_USER
+

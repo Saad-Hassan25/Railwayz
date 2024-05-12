@@ -4,15 +4,25 @@ from .models import Passenger
 from .forms import PassengerRegistrationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login
-# Example: Storing Passenger ID in a Session Variable
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.contrib.auth import logout
 from Bookings.models import *
 from django.http import JsonResponse
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
+from Railwayz import settings
+from . models import *
+from django.core.mail import EmailMessage
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.utils.encoding import force_bytes, force_str
+from . tokens import generate_token 
+from django.contrib.auth import update_session_auth_hash
 
 def register(request):
+    
     if request.method == 'POST':
         firstName = request.POST.get('firstName')
         lastName = request.POST.get('lastName')
@@ -36,10 +46,15 @@ def register(request):
             gender=gender,
             user=user
         )
+        user.first_name = firstName
+        user.last_name = lastName
+        user.email = email
+        user.is_active = False       
         user.save()
         passenger.save()
-        
-        return redirect('home')
+        sendConfirmationEmail(request, user)
+
+        return redirect('UserManagement:RegistrationComplete')
     else:
         return render(request, 'register.html')
 
@@ -57,8 +72,9 @@ def userLogin(request):
             except Passenger.DoesNotExist:
                 error_message = 'Passenger does not exist'
         else:
-            error_message = 'Invalid email or password'
-        return render(request, 'login.html', {'error_message': error_message})
+            messages.error(request,"invalid credentials")
+            return redirect('UserManagement:incorrectDetails') 
+
     else:
         return render(request, 'login.html')
 
@@ -81,42 +97,53 @@ def userLogout(request):
     return redirect('home')  
 
 
-def services(request):
-    return render(request,"services.html")
+def registrationComplete(request):
+    return render(request,"successful.html")
 
-def userHelp(request):
-    return render(request,"help.html")
 
-def contact(request):
-    return render(request,"contact.html")
 
-def userComplaint(request):
-    return render(request,"Others/complaint.html")
+def sendConfirmationEmail(request, myUser):
+    current_site = get_current_site(request)
+    emailSubject = "Railwayz - Confirm your Email"
+    message2 = render_to_string('confirmationEmail.html',{
+            
+            'name': myUser.first_name,
+            'domain': current_site.domain,
+            'uid': urlsafe_base64_encode(force_bytes(myUser.pk)),
+            'token': generate_token.make_token(myUser)
+        })
+    email = EmailMessage(
+        emailSubject,
+        message2,
+        settings.EMAIL_HOST_USER,
+        [myUser.email],
+    )
+    email.fail_silently = True
+    email.send()
+    
+def activate(request,uidb64,token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        myuser = User.objects.get(pk=uid)
+    except (TypeError,ValueError,OverflowError,User.DoesNotExist):
+        myuser = None
 
-def team(request):
-    return render(request,"team.html")
-
-def terms(request):
-    return render(request, 'terms.html')
-
-def privacy(request):
-    return render(request, 'privacy.html')
-
-def contact_submit(request):
-    if request.method == 'POST':
-        name = request.POST.get('name', '')
-        email = request.POST.get('email', '')
-        message = request.POST.get('message', '')
-
-        # Send email
-        send_mail(
-            'Contact Form Submission',
-            f'Name: {name}\nEmail: {email}\nMessage: {message}',
-            email,  # Replace with your email address
-            ['l215252@lhr.nu.edu.pk'],  # Replace with recipient email address
-            fail_silently=False,
-        )
-
-        return JsonResponse({'success': True})
+    if myuser is not None and generate_token.check_token(myuser,token):
+        myuser.is_active = True
+        # user.profile.signup_confirmation = True
+        myuser.save()
+        login(request,myuser)
+        return redirect('UserManagement:UserLogin')
     else:
-        return JsonResponse({'success': False})
+        return render(request,'registrationFailed.html')
+
+def activationFailed(request):
+    return render(request,"registrationFailed.html")
+
+
+def incorrectDetails(request):
+    return render(request,"incorrectDetails.html")
+
+def forgetPassword(request):
+    return render(request,"passwordReset.html")
+

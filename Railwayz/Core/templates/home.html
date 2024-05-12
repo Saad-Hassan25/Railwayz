@@ -14,13 +14,13 @@
     <body>
         <header>
             <div class="navbar">
-               <div class="logo"> <img src="{% static 'img3.png' %}" alt="RailWayz logo"><a href="{% url 'home' %}">RailWayz</a></div>
+               <div class="logo"> <img src="{% static 'img3.png' %}" alt="RailWayz logo"><a href="{% url 'Core:home' %}">RailWayz</a></div>
                <ul class="links">
-                  <li><a href="{% url 'home' %}">HOME </a></li>
-                  <li><a href="{% url 'UserManagement:team' %}">TEAM </a></li>
-                  <li><a href="{% url 'UserManagement:services' %}">SERVICES </a></li>
-                  <li><a href="{% url 'UserManagement:help' %}">HELP</a></li>
-                  <li><a href="{% url 'UserManagement:contact' %}">CONTACT</a></li>
+                  <li><a href="{% url 'Core:home' %}">HOME </a></li>
+                  <li><a href="{% url 'Core:team' %}">TEAM </a></li>
+                  <li><a href="{% url 'Core:services' %}">SERVICES </a></li>
+                  <li><a href="{% url 'Core:help' %}">HELP</a></li>
+                  <li><a href="{% url 'Core:contact' %}">CONTACT</a></li>
                 </ul>
                 <a href="{% url 'UserManagement:UserLogin' %}" class="action_btn">LOGIN</a>
                 <div class="toggle_btn">
@@ -29,11 +29,11 @@
             </div>
 
             <div class="dropdown_menu">
-                <li><a href="{% url 'home' %}">HOME </a></li>
-                <li><a href="{% url 'UserManagement:team' %}">TEAM </a></li>
-                <li><a href="{% url 'UserManagement:services' %}">SERVICES </a></li>
-                <li><a href="{% url 'UserManagement:help' %}">HELP </a></li>
-                <li><a href="{% url 'UserManagement:contact' %}">CONTACT</a></li>
+                <li><a href="{% url 'Core:home' %}">HOME </a></li>
+                <li><a href="{% url 'Core:team' %}">TEAM </a></li>
+                <li><a href="{% url 'Core:services' %}">SERVICES </a></li>
+                <li><a href="{% url 'Core:help' %}">HELP </a></li>
+                <li><a href="{% url 'Core:contact' %}">CONTACT</a></li>
                 <li><a href="{% url 'UserManagement:UserLogin' %}">LOGIN</a></li>
                 <li><a href="{% url 'UserManagement:Register' %}" >REGISTER</a></li>
             </div>
@@ -74,9 +74,9 @@
                 </div>
                 <nav class="footer-nav">
                     <ul>
-                        <li><a href="{% url 'UserManagement:privacy' %}">Privacy</a></li>
-                        <li><a href="{% url 'UserManagement:terms' %}">Terms</a></li>
-                        <li><a href="{% url 'UserManagement:contact' %}">Contact</a></li>
+                        <li><a href="{% url 'Core:privacy' %}">Privacy</a></li>
+                        <li><a href="{% url 'Core:terms' %}">Terms</a></li>
+                        <li><a href="{% url 'Core:contact' %}">Contact</a></li>
                     </ul>
                 </nav>
             </div>

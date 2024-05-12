@@ -1,0 +1,17 @@
+{% autoescape off %}
+Salam {{ name }},
+
+Thank you for choosing RailWayz for your ticket booking needs! We are excited to help you secure your upcoming travel plans and ensure a smooth and enjoyable experience.
+
+To ensure the security of your account and the integrity of our system, we kindly ask you to verify your email address.
+
+Please click on the following link to complete your registration:
+Confirmation Link: http://{{ domain }}{% url 'UserManagement:activate' uidb64=uid token=token %} 
+
+Once verified, you'll gain full access to our platform
+
+Should you encounter any issues or have any questions, feel free to reach out to our support team at [Support Email/Contact].
+
+Best regards,
+Team Railwayz
+ {% endautoescape %}

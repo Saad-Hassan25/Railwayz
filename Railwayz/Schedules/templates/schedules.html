@@ -1,163 +1,143 @@
+{% load static %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Ticket</title>
+    <link rel="stylesheet" href="{% static 'schedules.css' %}">
+    
     <style>
-        /* Basic reset styles */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
+
+      .modal {
+            display: none; 
+            position: fixed;
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%;
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4); 
         }
         
-        /* Header styles */
-        header {
-            background-color: #007bff;
-            color: #fff;
-            padding: 1rem 2rem;
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
             text-align: center;
-            margin-bottom: 2rem;
         }
         
-        /* Form styles */
-        form {
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-        
-        form label {
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
             font-weight: bold;
-            margin-right: 1rem;
         }
         
-        form input[type="text"] {
-            padding: 0.5rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-right: 1rem;
-        }
-        
-        form button[type="submit"] {
-            padding: 0.5rem 2rem;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
             cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        form button[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-        
-        /* Table styles */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 2rem;
-        }
-        
-        th, td {
-            border: 1px solid #ddd;
-            padding: 0.5rem;
-            text-align: center;
-        }
-        
-        th {
-            background-color: #007bff;
-            color: #fff;
-        }
-        
-        /* Action column styles */
-        .action {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .action form {
-            display: flex;
-            align-items: center;
-        }
-        
-        .action select {
-            padding: 0.5rem;
-            margin-right: 0.5rem;
         }
     </style>
 </head>
 <body>
     <header>
-        <h2>Train Schedules</h2>
+        <div class="user-info">
+            <img src="/static/avatar.png" alt="User Avatar">
+            {% if user.is_authenticated %}
+                <p>Welcome, {{ user.passenger.firstName }}</p>
+            {% endif %}
+        </div>
+        <div class="action-buttons">
+            <a href="/user/userPage"><button>Home</button></a>
+            <a href="/user/login"><button>Logout</button></a>
+        </div>
     </header>
-    <main>
-        <form method="GET" action="{% url 'Schedules:TrainDetails' %}">
-            <label for="departure">Departure Station:</label>
-            <input type="text" name="departure" id="departure" placeholder="Enter departure station">
+    <div class="container">
+        <main>
+            <form method="GET" action="{% url 'Schedules:TrainDetails' %}">
+                <label for="departure">Departure Station:</label>
+                <input type="text" name="departure" id="departure" placeholder="Enter departure station">
+    
+                <label for="arrival">Arrival Station:</label>
+                <input type="text" name="arrival" id="arrival" placeholder="Enter arrival station">
 
-            <label for="arrival">Arrival Station:</label>
-            <input type="text" name="arrival" id="arrival" placeholder="Enter arrival station">
-
-           <!--<label for="date">Date:</label>
-            <input type="date" name="date" id="date">-->
-
-
-            <button type="submit">Filter</button>
-        </form>
-        <table>
-            <thead>
-                <tr>
-                    <th>Train</th>
-                    <th>Departure Station</th>
-                    <th>Departure Date/Time</th>
-                    <th>Arrival Station</th>
-                    <th>Arrival Date/Time</th>
-                    <th>Economy Class Seats Remaining</th>
-                    <th>Buisness Class Seats Remaining</th>
-                    <th>Economhy price</th>
-                    <th>Buisness price</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for schedule in train_schedules %}
+                <button type="submit">Filter</button>
+            </form>
+            <table>
+                <thead>
                     <tr>
-                        <td>{{ schedule.train.name }}</td>
-                        <td>{{ schedule.DepartureStation.name }}</td>
-                        <td>{{ schedule.departure_time }}</td>
-                        <td>{{ schedule.ArrivalStation.name }}</td>
-                        <td>{{ schedule.arrival_time }}</td>
-                        <td>{{ schedule.available_economy_seats }}</td>
-                        <td>{{ schedule.available_business_seats }}</td>
-                        <td>{{ schedule.economy_price }}</td>
-                        <td>{{ schedule.business_price }}</td>
-    
-    
-                        <td class="action">
-                            <form method="post" action="{% url 'Bookings:BookTicket' schedule.id %}">
-                                {% csrf_token %}
-                                <label for="class_type">Class Type:</label>
-                                <select name="class_type" id="class_type">
+                        <th>Train</th>
+                        <th>Departure Station</th>
+                        <th>Departure Date/Time</th>
+                        <th>Arrival Station</th>
+                        <th>Arrival Date/Time</th>
+                        <th>Economy Class Seats Remaining</th>
+                        <th>Buisness Class Seats Remaining</th>
+                        <th>Economy price</th>
+                        <th>Buisness price</th>
+                        <th>Class Type</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for schedule in train_schedules %}
+                        <tr>
+                            <td>{{ schedule.train.name }}</td>
+                            <td>{{ schedule.DepartureStation.name }}</td>
+                            <td>{{ schedule.departure_time }}</td>
+                            <td>{{ schedule.ArrivalStation.name }}</td>
+                            <td>{{ schedule.arrival_time }}</td>
+                            <td>{{ schedule.available_economy_seats }}</td>
+                            <td>{{ schedule.available_business_seats }}</td>
+                            <td>{{ schedule.economy_price }}</td>
+                            <td>{{ schedule.business_price }}</td>
+                            <td>
+                                <select name="class_type" id="class_type_{{ schedule.id }}">
                                     <option value="economy">Economy</option>
                                     <option value="business">Business</option>
                                 </select>
+                            </td>
+                            <td class="action">
+                                <button onclick="openModal('{{ schedule.id }}')">Book</button>
+                                <div id="cancel-modal-{{ schedule.id }}" class="modal">
+                                    <div class="modal-content">
+                                        <span class="close" onclick="closeModal('{{ schedule.id }}')">&times;</span>
+                                        <p>Are you sure you want to book this ticket?</p>
+                                        <form id="book-form-{{ schedule.id }}" action="{% url 'Bookings:BookTicket' schedule.id %}" method="post">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="class_type" id="class_type_hidden_{{ schedule.id }}">
+                                            <button type="button" onclick="closeModal('{{ schedule.id }}')">No</button>
+                                            <button type="submit">Yes</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </main>
+    </div>
+    <script>
+        function openModal(scheduleId) {
+            var classType = document.getElementById("class_type_" + scheduleId).value;
+            document.getElementById("class_type_hidden_" + scheduleId).value = classType;
+            document.getElementById("cancel-modal-" + scheduleId).style.display = "block";
+        }
 
-                                <label for="num_tickets">Number of Tickets:</label>
-                                <input type="number" name="num_tickets" id="num_tickets" min="1" value="1">
-                                <input type="submit" value="Book">
-                            </form>
-                        </td>
-                    </tr>
-                {% endfor %}
-
-            </tbody>
-        </table>
-        <a href="{% url 'Schedules:DepartedTrains' %}"><button>View departed trains</button></a>
-    </main>
+        function closeModal(scheduleId) {
+            document.getElementById("cancel-modal-" + scheduleId).style.display = "none";
+        }
+    </script>
 </body>
 </html>
