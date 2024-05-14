@@ -94,7 +94,7 @@ def userPage(request):
 
 def userLogout(request):
     logout(request)
-    return redirect('home')  
+    return redirect('Core:home')  
 
 
 def registrationComplete(request):

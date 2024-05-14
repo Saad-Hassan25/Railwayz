@@ -14,7 +14,7 @@ class Ticket(models.Model):
     journeyDate = models.DateField()
     classType = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=10, decimal_places=2)  
-    booking_time = models.DateTimeField(default=timezone.now)  # Timestamp when the ticket was booked
+    booking_time = models.DateTimeField(default=timezone.now)  
     status = models.CharField(max_length=20, choices=[('booked', 'Booked'), ('canceled', 'Canceled')], default='booked')
 
     def __str__(self):

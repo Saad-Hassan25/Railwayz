@@ -50,9 +50,8 @@
     <h1>Billing Details</h1>
     <p>Total Amount: ${{ total_amount }}</p>
 
-    <form method="post" action="{% url 'Payment:billing_page' schedule_id=schedule.id passenger_id=passenger.id class_type=class_type num_tickets=num_tickets total_amount=total_amount %}">
+    <form method="post" action="{% url 'payment:billing_page' schedule_id=schedule.id passenger_id=passenger.id class_type=class_type num_tickets=num_tickets total_amount=total_amount %}">
         {% csrf_token %}
-        <!-- Add payment processing fields and options here -->
         <input type="submit" value="Pay Now">
     </form>
 </body>

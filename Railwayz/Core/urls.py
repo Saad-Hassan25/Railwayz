@@ -10,7 +10,9 @@ urlpatterns = [
     path('privacy/', privacy, name='privacy'),
     path('services/', services, name="services"),
     path('team/', team, name="team"),
-    path('terms-and-conditions/', terms, name='terms')   
+    path('terms-and-conditions/', terms, name='terms'),
+    path('contact-submit/', contact_submit, name='contact_submit')
+ 
     
     # Other URL patterns for the core app
 ]

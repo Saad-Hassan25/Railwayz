@@ -38,7 +38,7 @@
       <h1>Contact us</h1>
       <p>Have any questions or need assistance? Reach out to us now.</p>
       
-      <form id="contact-form" method="post" action="{% url 'Core:contact' %}">
+      <form id="contact-form" method="post" action="{% url 'Core:contact_submit' %}">
         {% csrf_token %}
         <label for="name">Full name</label>
     <input type="text" id="name" name="name" placeholder="Your Full Name" required>

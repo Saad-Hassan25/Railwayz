@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.conf import settings
 from Schedules.models import *
-
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def billing_page(request, schedule_id, passenger_id, class_type, num_tickets, total_amount):
     try:
@@ -23,11 +23,10 @@ def billing_page(request, schedule_id, passenger_id, class_type, num_tickets, to
 
     except Ticket.DoesNotExist:
         return HttpResponse("Booking does not exist!")
-    
 
 
-stripe.api_key = settings.STRIPE_SECRET_KEY
 def create_checkout_session(request, schedule_id, passenger_id, class_type, num_tickets, total_amount):
+
     try:
         schedule = TrainSchedule.objects.get(pk=schedule_id)
         passenger = Passenger.objects.get(pk=passenger_id)
@@ -43,7 +42,8 @@ def create_checkout_session(request, schedule_id, passenger_id, class_type, num_
                         'product_data': {
                             'name': f'Train Ticket ({class_type.capitalize()})',
                         },
-                        'unit_amount': int(10*100),  # Convert to cents
+                        'unit_amount': 800000
+
                     },
                     'quantity': 1,
                 },
@@ -67,7 +67,6 @@ def create_checkout_session(request, schedule_id, passenger_id, class_type, num_
         return HttpResponse("Booking does not exist!")
     except Exception as e:
         return HttpResponse(f"Failed to create checkout session. Error: {e}")
-    
     
 def payment_success(request):
     try:

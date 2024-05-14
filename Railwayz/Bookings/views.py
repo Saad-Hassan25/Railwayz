@@ -12,7 +12,6 @@ from django.db.models import F, ExpressionWrapper, IntegerField
 import stripe
 from django.conf import settings
 
-
 # Create your views here.
 
 def bookTicket(request, schedule_id):
@@ -21,8 +20,8 @@ def bookTicket(request, schedule_id):
     
     if passenger_id:
         passenger = Passenger.objects.get(pk=passenger_id)
-        class_type = request.POST.get('class_type')  # Get the selected class type from the form
-        num_tickets = int(request.POST.get('num_tickets', 1))  # Get the number of tickets to book
+        class_type = request.POST.get('class_type')  #selected class type from the form
+        num_tickets = int(request.POST.get('num_tickets', 1))  #number of tickets to book
                 
         # Check if seats are available
         if class_type == "economy":
@@ -44,7 +43,7 @@ def bookTicket(request, schedule_id):
             return HttpResponse("Invalid class type")
         
         total_amount = price * num_tickets
-        return redirect('Payment:billing_page', schedule_id=schedule_id, passenger_id=passenger_id, class_type=class_type, num_tickets=num_tickets, total_amount=total_amount)
+        return redirect('payment:billing_page', schedule_id=schedule_id, passenger_id=passenger_id, class_type=class_type, num_tickets=num_tickets, total_amount=total_amount)
 
         
     else:
@@ -62,6 +61,6 @@ def cancelTicket(request, booking_id):
         messages.success(request, 'Ticket canceled successfully.')
     else:
         messages.error(request, 'Ticket cannot be canceled after 2 hours of booking.')
-    return redirect('home')
+    return redirect('UserManagement:UserPage')
 
 
