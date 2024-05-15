@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,7 +49,7 @@ INSTALLED_APPS = [
     'Trains',
     'Stations',
     'Schedules',
-    'jazzmin',
+    
 ]
 
 MIDDLEWARE = [
@@ -180,5 +181,6 @@ JAZZMIN_UI_TWEAKS = {
 JAZZMIN_SETTINGS = {
     "site_title": "RailWayz Admin",
     "site_brand": "RailWayz",
-    "welcome_sign":"Welcome",
+    "welcome_sign": "Welcome",
 }
+

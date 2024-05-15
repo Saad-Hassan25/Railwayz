@@ -105,6 +105,6 @@ def payment_success(request):
         del request.session['total_amount']
 
         return redirect('UserManagement:UserLogin')
-
+    
     except Exception as e:
         return HttpResponse(f"Failed to process payment. Error: {e}")
