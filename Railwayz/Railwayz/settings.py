@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'Trains',
     'Stations',
     'Schedules',
+    'jazzmin',
 ]
 
 MIDDLEWARE = [
@@ -172,3 +173,12 @@ EMAIL_HOST_USER = 'l215252@lhr.nu.edu.pk'  # Your Gmail email address
 EMAIL_HOST_PASSWORD = 'Saad2592003'  # Your Gmail password or app-specific password
 DEFAULT_FROM_EMAIL = 'l215252@lhr.nu.edu.pk'  # Same as EMAIL_HOST_USER
 
+JAZZMIN_UI_TWEAKS = {
+    "theme": "darkly",
+}
+
+JAZZMIN_SETTINGS = {
+    "site_title": "RailWayz Admin",
+    "site_brand": "RailWayz",
+    "welcome_sign":"Welcome",
+}
