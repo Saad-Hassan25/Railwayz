@@ -42,7 +42,7 @@ def create_checkout_session(request, schedule_id, passenger_id, class_type, num_
                         'product_data': {
                             'name': f'Train Ticket ({class_type.capitalize()})',
                         },
-                        'unit_amount': 800000
+                        'unit_amount': 100000
 
                     },
                     'quantity': 1,
@@ -104,7 +104,7 @@ def payment_success(request):
         del request.session['num_tickets']
         del request.session['total_amount']
 
-        return HttpResponse("Payment successful! Tickets booked.")
+        return redirect('UserManagement:UserLogin')
 
     except Exception as e:
         return HttpResponse(f"Failed to process payment. Error: {e}")

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/schedules.css">
+    <title>Book Ticket</title>
+    <style>
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%;
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4); 
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <header>
+            <div class="user-info">
+                <img src="/static/imgtest.png" alt="User Avatar">
+                {% if user.is_authenticated %}
+                    <p>Welcome, {{ user.passenger.firstName }}</p>
+                {% endif %}
+            </div>
+            <div class="action-buttons">
+                <a href="{% url 'Core:home' %}"><button>Home</button></a>
+            </div>
+        </header>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Train</th>
+                    <th>Departure Station</th>
+                    <th>Departure Date/Time</th>
+                    <th>Arrival Station</th>
+                    <th>Arrival Date/Time</th>
+                    <th>Economy price</th>
+                    <th>Buisness price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for schedule in train_schedules %}
+                    <tr>
+                        <td>{{ schedule.train.name }}</td>
+                        <td>{{ schedule.DepartureStation.name }}</td>
+                        <td>{{ schedule.departure_time }}</td>
+                        <td>{{ schedule.ArrivalStation.name }}</td>
+                        <td>{{ schedule.arrival_time }}</td>
+                        <td>{{ schedule.economy_price }}</td>
+                        <td>{{ schedule.business_price }}</td>
+                        
+
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+        <a href="{% url 'Schedules:DepartedTrains' %}"><button>View departed trains</button></a>
+    </main>
+    <script>
+        function openModal(scheduleId) {
+            var classType = document.getElementById("class_type_" + scheduleId).value;
+            document.getElementById("class_type_hidden_" + scheduleId).value = classType;
+            document.getElementById("cancel-modal-" + scheduleId).style.display = "block";
+        }
+
+        function closeModal(scheduleId) {
+            document.getElementById("cancel-modal-" + scheduleId).style.display = "none";
+        }
+    </script>
+</body>
+</html>

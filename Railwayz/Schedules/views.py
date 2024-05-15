@@ -67,3 +67,28 @@ def departedTrainsDetails(request):
     {
         'train_schedules': train_schedules,
     })
+
+
+def vtrainDetails(request):
+    current_time = timezone.now()
+    available_trains = Train.objects.all()
+    available_stations = Station.objects.all()
+    train_schedules = TrainSchedule.objects.filter(departure_time__gte=current_time)
+
+    departure_station = request.GET.get('departure')
+    arrival_station = request.GET.get('arrival')
+
+    if departure_station and arrival_station:
+        train_schedules = train_schedules.filter(
+            DepartureStation__name__icontains=departure_station,
+            ArrivalStation__name__icontains=arrival_station
+        )
+        
+    for schedule in train_schedules:
+        schedule.economy_price = schedule.calculate_price("economy")
+        schedule.business_price = schedule.calculate_price("business")
+
+    return render(request, 'vschedules.html', 
+    {
+        'train_schedules': train_schedules,
+    })
